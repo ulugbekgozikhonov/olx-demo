@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX.uz - E'lon berish</title>
+    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/announce.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="{% static 'img/image.png' %}" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./profile.html">Chat</a></li>
+                    <li><a href="./announce.html">OZ | Рус</a></li>
+                    <li><a href="./login.html">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    <li><a href="./login.html"><button class="btn">E'lon berish</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>E’lon joylashtirish</h2>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+            <!-- Sarlavha -->
+            <label for="title">Bizga e’loningiz haqida gapirib bering</label>
+            <input type="text" id="title" name="title" placeholder="Masalan, Iphone 11 kafolati bilan" required>
+
+            <!-- Kategoriya tanlash -->
+            <label for="category">Bo'lim</label>
+            <select id="category" name="category" required>
+                <option value="">Bo'limni tanlang</option>
+                <option value="elektronika">Elektronika</option>
+                <option value="avto">Avto</option>
+                <option value="uy-joy">Uy-joy</option>
+                <option value="xizmatlar">Xizmatlar</option>
+            </select>
+
+            <!-- Rasm yuklash -->
+            <label for="photo">Rasm yuklash:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+
+            <!-- Tavsif -->
+            <label for="description">Tavsif:</label>
+            <textarea id="description" name="description" rows="4" placeholder="E'lon haqida batafsil yozing..."
+                required></textarea>
+
+            <!-- Narx -->
+            <label for="price">Narx (so'm):</label>
+            <input type="number" id="price" name="price" placeholder="Narxni kiriting" required>
+
+            <!-- Aloqa ma'lumotlari -->
+            <label for="phone">Telefon raqam:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+998 XX XXX XX XX" required>
+
+            <label for="location">Joylashuv:</label>
+            <input type="text" id="location" name="location" placeholder="Shahar yoki tuman" required>
+
+            <!-- Yuborish tugmasi -->
+            <button class="add-btn" type="submit">E'lonni joylash</button>
+        </form>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <!-- Kategoriyalar -->
+            <div class="footer-section">
+                <h3>Kategoriyalar</h3>
+                <ul>
+                    <li><a href="#">Avtomobillar</a></li>
+                    <li><a href="#">Ko‘chmas mulk</a></li>
+                    <li><a href="#">Elektronika</a></li>
+                    <li><a href="#">Xizmatlar</a></li>
+                    <li><a href="#">Ish o‘rinlari</a></li>
+                </ul>
+            </div>
+
+            <!-- Foydali havolalar -->
+            <div class="footer-section">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="#">Yordam</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Biz bilan bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="footer-section">
+                <h3>Biz ijtimoiy tarmoqlarda</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
+                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright qismi -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX Clone</title>
+    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./img/image.png" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./profile.html">Chat</a></li>
+                    <li><a href="#">OZ | Рус</a></li>
+                    <li><a href="./login.html">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    <li><a href="./login.html"><button class="btn">E'lon berish</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="announce">
+            <div class="container">
+                <div class="announce">
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html> -->

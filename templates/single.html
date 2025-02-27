@@ -1,0 +1,163 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYD E2 | OLX</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link rel="stylesheet" href="{% static 'css/single.css' %}">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="{% static 'img/image.png' %}" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Chat</a></li>
+                    <li><a href="#">OZ | Рус</a></li>
+                    <li><a href="./login.html">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    <li><button class="btn">E'lon berish</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="image-section">
+                <div class="slider-container">
+                    <div class="slider">
+                        <img src="{% static 'img/product1.png' %}" class="slide" alt="BYD E2 Front">
+                        <img src="{% static 'img/product2.png' %}" class="slide" alt="BYD E2 Side">
+                        <img src="{% static 'img/product3.png' %}" class="slide" alt="BYD E2 Back">
+                    </div>
+                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+                <div class="product-info">
+                    <h3>Tavsif</h3>
+                    <p>BYD Tang Полный Full EV600 4.6. Цена на данный момент самая низкая на олх. <br> <br>
+
+                        Через пару месяцев цена возрастёт за счёт нового указа на 4-5 тыс. <br> <br>
+
+                        Полный привод AWD <br>
+                        Панорамная крыша <br>
+                        22 дюймовые легко сплавные диски с низкопрофильной резиной <br>
+                        Пульт с функцией выезда из парковки <br>
+                        Фильтр воздуха HEPA <br>
+                        Трехзонный климат-контроль <br>
+                        Датчики качества воздуха внутри салона и на улице <br> <br>
+
+                        Сиденья с выдвижной поддержкой для ног (Ottoman) <br> <br>
+
+                        Мощные колодки компании BREMBO <br> <br>
+
+                        Сидения с обдувом и обогревом, память сидения водителя на 3х человек <br> <br>
+                        Кожа сидений и обшивки NAPPA</p>
+                </div>
+            </div>
+
+            <div class="details">
+                <h2>Премиальный электромобиль BYD Tang EV600 <br> Dual-Motor 4.6s</h2>
+                <p class="price">236 600 000 so’m</p>
+                <div class="details-btns">
+                    <button class="btnn">Xabar yozish</button>
+                    <button class="btnn">Qo’ng’iroq qilish</button>
+                </div>
+
+                <div class="details-user">
+                    <h3 class="det-title">Foydalanuvchi</h3>
+                    <div class="det-user-info">
+                        <div class="info-img">
+                            <img src="{% static 'img/user.svg' %}" alt="">
+                        </div>
+                        <div class="det-user-des">
+                            <h3 class="user-des-title">Ilhom</h3>
+                            <h4>OLXda 2012 M11 beri</h4>
+                            <h4>Oxirgi marta bugun 01:50 da bo'lgan</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-user">
+                    <h3 class="det-title">Joylashuv</h3>
+                    <div class="det-map">
+                        <div class="det-user-info">
+                            <div class="info-imgg">
+                                <img src="static 'img/location.png'" alt="">
+                            </div>
+                            <div class="det-user-des">
+                                <h3 class="user-des-title">Toshkent,<br> Yunusobod <br> tumani</h3>
+                                <h4>Toshkent viloyati</h4>
+                            </div>
+                        </div>
+                        <div class="details-map">
+                            <img src="static 'img/map.png'" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Kategoriyalar -->
+            <div class="footer-section">
+                <h3>Kategoriyalar</h3>
+                <ul>
+                    <li><a href="#">Avtomobillar</a></li>
+                    <li><a href="#">Ko‘chmas mulk</a></li>
+                    <li><a href="#">Elektronika</a></li>
+                    <li><a href="#">Xizmatlar</a></li>
+                    <li><a href="#">Ish o‘rinlari</a></li>
+                </ul>
+            </div>
+
+            <!-- Foydali havolalar -->
+            <div class="footer-section">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="#">Yordam</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Biz bilan bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="footer-section">
+                <h3>Biz ijtimoiy tarmoqlarda</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
+                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright qismi -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/single.js' %}"></script>
+
+</body>
+
+</html>

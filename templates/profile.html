@@ -1,0 +1,152 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sozlamalar | OLX</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="{% static 'img/image.png' %}" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./profile.html">Chat</a></li>
+                    <li><a href="#">OZ | Рус</a></li>
+                    <li><a href="./login.html">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    <li><a href="./login.html"><button class="btn">E'lon berish</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="setting-box">
+        <div class="setting-box-container">
+            <h3>E’lonlar</h3>
+            <h3>Xabarlar</h3>
+            <h3>To‘lovlar va OLX hisobi</h3>
+            <h3>Olingan baholar</h3>
+            <h3>Nomzod profili</h3>
+            <h3 class="active">Sozlamalar</h3>
+        </div>
+    </div>
+
+    <div class="settings-container">
+        <div class="setting-item">
+            <button class="setting-title">Bog‘lanish uchun ma’lumotlarni o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="name">Shaharni tanlash</label>
+                <input type="text" name="name" id="name" required>
+
+                <label for="user">Aloqa uchun shaxs</label>
+                <input type="text" name="user" id="user" required>
+
+                <label for="phone">Telefon raqami</label>
+                <input type="text" name="phone" id="phone" required>
+
+                <button type="submit">Saqlash</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Parolni o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="password">Parolingiz <span>*</span></label>
+                <input type="password" name="password" id="password" required>
+
+                <label for="new_password">Yangi Parol <span>*</span></label>
+                <input type="password" name="new_password" id="new_password" required>
+
+                <button type="submit">Parolni o'zgartirish</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Email-manzilini o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="name">Sizning OLX dagi xozirgi parolingiz</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="new_email">Yangi Email-manzili</label>
+                <input type="email" name="new_email" id="new_email" required>
+
+                <button type="submit">Saqlash</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Akauntni o‘chirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="password">Parolingiz <span>*</span></label>
+                <input type="password" name="password" id="password" required>
+
+                <button type="submit">Akauntni o'chirish</button>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <!-- Kategoriyalar -->
+            <div class="footer-section">
+                <h3>Kategoriyalar</h3>
+                <ul>
+                    <li><a href="#">Avtomobillar</a></li>
+                    <li><a href="#">Ko‘chmas mulk</a></li>
+                    <li><a href="#">Elektronika</a></li>
+                    <li><a href="#">Xizmatlar</a></li>
+                    <li><a href="#">Ish o‘rinlari</a></li>
+                </ul>
+            </div>
+
+            <!-- Foydali havolalar -->
+            <div class="footer-section">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="#">Yordam</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Biz bilan bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="footer-section">
+                <h3>Biz ijtimoiy tarmoqlarda</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
+                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright qismi -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/profile.js' %}"></script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <div class="setting-item">
