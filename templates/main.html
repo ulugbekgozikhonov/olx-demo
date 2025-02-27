@@ -1,0 +1,120 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX Asosiy</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="{% static 'img/image.png' %}" alt="">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Chat</a></li>
+                    <li><a href="#">OZ | Рус</a></li>
+                    <li><a href="./login.html">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    <li><button class="btn">E'lon berish</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="shop-cards">
+                <div class="hero-title">
+                    <h1>Biz 1,000 dan ortiq e'lon topdik</h1>
+                </div>
+
+                <a href="{% url 'detail_ads' id=1 %}" class="card">
+                    <img src="{% static 'img/product1.png' %}" alt="Spark sotiladi 2010">
+                    <div class="info">
+                        <h3>Spark sotiladi 2010</h3>
+                        <p><small>Toshkent, Shayxontohur tumani - 2025-02-24</small></p>
+                        <p>2010 - 213 km</p>
+                        <h4>62 618 350 so’m</h4>
+                    </div>
+                </a>
+
+                <a href="" class="card">
+                    <img src="{% static 'img/product1.png' %}" alt="Jac M3 Plus">
+                    <div class="info">
+                        <h3>Jac M3 plus Qora rangda</h3>
+                        <p><small>Eshonguzar - Bugunda 18:31</small></p>
+                        <p>2023 - 58 000 km</p>
+                        <h4>206 576 000 so’m</h4>
+                    </div>
+                </a>
+
+                <a href="" class="card">
+                    <img src="static 'img/product1.png" alt="BYD E2 405km">
+                    <div class="info">
+                        <h3>BYD E2 405km Luxe BYD ROHAT</h3>
+                        <p><small>Toshkent, Bektemir tumani - Bugunda 18:18</small></p>
+                        <p>2024 - 0 km</p>
+                        <h4>236 600 000 so’m</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <!-- Kategoriyalar -->
+            <div class="footer-section">
+                <h3>Kategoriyalar</h3>
+                <ul>
+                    <li><a href="#">Avtomobillar</a></li>
+                    <li><a href="#">Ko‘chmas mulk</a></li>
+                    <li><a href="#">Elektronika</a></li>
+                    <li><a href="#">Xizmatlar</a></li>
+                    <li><a href="#">Ish o‘rinlari</a></li>
+                </ul>
+            </div>
+
+            <!-- Foydali havolalar -->
+            <div class="footer-section">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="#">Yordam</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Biz bilan bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="footer-section">
+                <h3>Biz ijtimoiy tarmoqlarda</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
+                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright qismi -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
