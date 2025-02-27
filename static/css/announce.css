@@ -1,0 +1,299 @@
+  /* Sahifa fon rangi */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Asosiy konteyner */
+.container {
+    width: 90%;
+    margin: 50px auto;
+    margin-top: 150px;
+    background: #fff;
+    padding: 20px 0 20px 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sarlavha */
+h2 {
+    color: rgb(2, 40, 44);
+    font-family: Geomanist, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 32px;
+    line-height: 34px;
+    margin: 48px 0px 30px;
+}
+
+/* Formadagi elementlar */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label */
+label {
+    color: rgb(2, 40, 44);
+    font-family: Geomanist, sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 22px;
+    margin: 30px 0 0px 0;
+    font-weight: 500;
+}
+
+/* Input va Select */
+input,
+textarea {
+    width: 70%;
+    height: 40px;
+    padding: 8px 0px 8px 30px; 
+    margin: 20px 0;
+    border: 3px solid transparent;
+    border-radius: 4px;
+    outline: none;
+    background: #f2f4f5;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+
+input:focus{
+    border-color: #002f34;
+}
+
+textarea:focus{
+    border-color: #002f34;
+}
+
+
+select{
+    width: 73%;
+    height: 60px;
+    padding: 8px 0px 8px 30px; 
+    margin: 20px 0;
+    border: 3px solid transparent;
+    border-radius: 4px;
+    outline: none;
+    background: #f2f4f5;
+    font-size: 18px;
+    transition: all 0.3s ease;  
+}
+
+/* Tekst maydoni */
+textarea {
+    resize: vertical;
+}
+
+/* Tugma */
+.add-btn {
+    background-color: #002f34;
+    color: white;
+    padding: 10px;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 18px;
+    width: 20%; 
+    height: 55px;
+    transition: all 0.5s ease;
+}
+
+.add-btn:hover {
+    background-color: white;
+    color: #002f34;
+    border-color: #002f34;
+}
+
+header {
+    background-color: #002f34;
+    padding: 10px 0;
+    color: white;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+
+nav ul li a:hover {
+    color: #f2f4f5a9;
+}
+
+
+nav ul li a i {
+    font-size: 18px;
+}
+
+
+
+.btn {
+    background-color: white;
+    color: #002f34;
+    border: 3px solid transparent;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+.btn:hover {
+    background-color: #002f34;
+    color: white;
+    border: 3px solid white;
+}
+
+
+
+/* Footer umumiy dizayni */
+footer {
+    background-color: #002f34;
+    color: white;
+    padding-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Footer konteyneri */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Har bir bo'lim */
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+}
+
+/* Sarlavhalar */
+.footer-section h3 {
+    margin-bottom: 10px;
+    color: #f8f9fa;
+}
+
+/* Ro'yxat */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Havolalar */
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #d3d3d3;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #f8f9fa;
+}
+
+/* Ijtimoiy tarmoqlar */
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.social-icons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+.social-icons a i {
+    font-size: 30px;
+    transition: transform 0.3s;
+}
+
+
+.bxl-facebook-circle{
+    color: 	#1877F2;
+}
+
+.bxl-telegram{
+    color: 	#0088cc;
+}
+
+.bxl-instagram-alt  {
+    background: linear-gradient(45deg,  #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+
+.social-icons a i:hover {
+    transform: scale(1.1);
+}
+
+/* Copyright qismi */
+.footer-bottom {
+    text-align: center;
+    background-color: #23272b;
+    padding: 10px;
+    margin-top: 10px;
+}
