@@ -174,11 +174,13 @@
     <div class="container">
         <button class="google-btn">Google orqali kirish</button>
 
+
         <div class="tabs">
             <button id="loginTab" class="active" onclick="showLogin()">Kirish</button>
             <button id="registerTab" onclick="showRegister()">Ro‘yxatdan o‘tish</button>
         </div>
-        <form id="loginForm" method="post" action="">
+        <form id="loginForm" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
             <div class="form-group">
                 <input type="text" placeholder="Telefon raqami yoki email">
             </div>
@@ -192,7 +194,8 @@
             <button class="submit-btn">Kirish</button>
         </form>
 
-        <form id="registerForm" class="hidden" method="post" action="">
+        <form id="registerForm" class="hidden" method="post" action="{% url 'register' %}">
+            {% csrf_token %}
             <div class="form-group">
                 <input type="text" placeholder="Telefon raqami yoki email">
             </div>

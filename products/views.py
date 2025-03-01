@@ -34,8 +34,6 @@ class AdvertisementDetailView(DetailView):
 
 
 
-def login(request):
-    return render(request, 'login.html')
 
 
 class UserProfileCreateView(CreateView):
