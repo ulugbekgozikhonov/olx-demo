@@ -1,3 +1,8 @@
+window.onload = function () {
+    showRegister();
+};
+
+
 function showLogin() {
     document.getElementById("loginForm").classList.remove("hidden");
     document.getElementById("registerForm").classList.add("hidden");

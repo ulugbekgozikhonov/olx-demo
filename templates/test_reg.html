@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro‘yxatdan O‘tish</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Ro‘yxatdan o‘tish</h2>
+
+        <!-- Xatoliklarni chiqarish -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {%if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="login_input" placeholder="Telefon raqam yoki email" required>
+            <input type="password" name="password" placeholder="Parol" required>
+            <input type="password" name="confirm_password" placeholder="Parolni takrorlang" required>
+            <button type="submit">Ro‘yxatdan o‘tish</button>
+        </form>
+        <p>Allaqachon akkauntingiz bormi? <a href="{% url 'log' %}">Kirish</a></p>
+    </div>
+</body>
+</html>
