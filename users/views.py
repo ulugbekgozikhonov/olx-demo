@@ -6,72 +6,98 @@ from django.contrib.auth.decorators import login_required
 from .models import VerificationCode
 from django.core.mail import send_mail
 import random
+from django.contrib.auth.hashers import check_password
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+# from django.contrib.auth.models import User
+
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model() 
 
 def login(request):
     if request.method == "POST":
+        print("SALOM LOGIN")
         login_input = request.POST.get("login_input")  
         password = request.POST.get("password")
 
-        user = None
-        if "@" in login_input:  
-            user = authenticate(request, email=login_input, password=password)
-        else:  
-            try:
-                user_obj = User.objects.get(phone_number=login_input)
-                user = authenticate(request, email=user_obj.email, password=password)
-            except User.DoesNotExist:
-                user = None
+        if not login_input or not password:
+            return render(request, "log.html", {"error": "Email yoki telefon kiritilmagan!"})  
 
-        if user:
+        user = None  # ✅ oldindan `None` qilib e’lon qilamiz
+
+        if "@" in login_input:  # Agar email bo'lsa
+            try:
+                user_obj = User.objects.get(email=login_input)
+                user = authenticate(request, username=user_obj.username, password=password)  # ✅ `username` orqali authenticate
+            except User.DoesNotExist:
+                pass  # `user` None bo‘lib qoladi
+        else:  # Agar telefon raqam bo'lsa
+            user_obj = User.objects.filter(phone_number=login_input).first()
+            if user_obj:
+                user = authenticate(request, username=user_obj.username, password=password)  # ✅ `username` orqali authenticate
+
+        if user:  
+            print(f"Login muvaffaqiyatli: {user}")
             logiin(request, user)
             return redirect("home")
         else:
-            return render(request, "login.html", {"error": "Login yoki parol xato!"})
+            print("Login xato! User topilmadi yoki parol noto‘g‘ri!")
+            return render(request, "log.html", {"error": "Login yoki parol xato!"})
 
-    return render(request, "login.html")
+    print("Not a POST request")
+    return render(request, "log.html")
+
+
 
 def register(request):
     if request.method == "POST":
         username = request.POST.get("username")
         login_input = request.POST.get("login_input")
         password = request.POST.get("password")
+        
+        print(username, login_input, password)
+
 
         if User.objects.filter(username=username).exists():
             return render(request, "register.html", {"error": "Bu username allaqachon olingan!"})
+        if login_input:
+            if "@" in login_input:  # Email orqali ro‘yxatdan o‘tish
+                if User.objects.filter(email=login_input).exists():
+                    return render(request, "register.html", {"error": "Bu email allaqachon mavjud!"})
 
-        if login_input and "@" in login_input:  # Email orqali ro‘yxatdan o‘tish
-            if User.objects.filter(email=login_input).exists():
-                return render(request, "register.html", {"error": "Bu email allaqachon mavjud!"})
+                code = str(random.randint(1000, 9999))
+                VerificationCode.objects.filter(email=login_input).delete()
+                VerificationCode.objects.create(email=login_input, code=code)
 
-            code = str(random.randint(1000, 9999))
-            VerificationCode.objects.filter(email=login_input).delete()
-            VerificationCode.objects.create(email=login_input, code=code)
+                send_mail(
+                    "Ro‘yxatdan o‘tish tasdiqlash kodi",
+                    f"Sizning tasdiqlash kodingiz: {code}",
+                    "mutalovnuriddin651@gmail.com",
+                    [login_input],
+                    fail_silently=False,
+                )
 
-            send_mail(
-                "Ro‘yxatdan o‘tish tasdiqlash kodi",
-                f"Sizning tasdiqlash kodingiz: {code}",
-                "mutalovnuriddin651@gmail.com",
-                [login_input],
-                fail_silently=False,
-            )
+                request.session["verification_email"] = login_input  # ✅ Emailni sessionga saqlash
+                request.session["username"] = username  # ✅ Username ham saqlanadi
+                request.session["password"] = password  # ✅ Parol ham saqlanadi
 
-            request.session["verification_email"] = login_input  # ✅ Emailni sessionga saqlash
-            request.session["username"] = username  # ✅ Username ham saqlanadi
-            request.session["password"] = password  # ✅ Parol ham saqlanadi
+                return redirect("verify")  # ✅ Tasdiqlash sahifasiga o‘tish
+            
+            else:  # Telefon orqali ro‘yxatdan o‘tish
+                if User.objects.filter(phone_number=login_input).exists():
+                    print(login_input)
+                    return render(request, "register.html", {"error": "Bu telefon allaqachon mavjud!"})
 
-            return redirect("verify")  # ✅ Tasdiqlash sahifasiga o‘tish
-        
-        else:  # Telefon orqali ro‘yxatdan o‘tish
-            if User.objects.filter(phone_number=login_input).exists():
-                return render(request, "register.html", {"error": "Bu telefon allaqachon mavjud!"})
-
-            user = User.objects.create(username=username, phone_number=login_input)
-            user.set_password(password)
-            user.save()
-            logiin(request, user)
-            return redirect("home")
-
+                user = User.objects.create(username=username, phone_number=login_input)
+                user.set_password(password)
+                user.save()
+                logiin(request, user)
+                return redirect("home")
+        else:
+            return render(request, "register.html", {"error": "Email yoki telefon kiritilmagan!"})
     return render(request, "register.html")
 
 def logout(request):
@@ -81,7 +107,7 @@ def logout(request):
 
 @login_required
 def home(request):
-    return render(request, "home.html")
+    return render(request, "index.html")
 
 
 def verify_view(request):
@@ -110,9 +136,9 @@ def verify_view(request):
                 verification.delete()  # ✅ Kodni o‘chirish
 
                 # Sessionni tozalash
-                del request.session["verification_email"]
-                del request.session["username"]
-                del request.session["password"]
+                request.session.pop("verification_email", None)
+                request.session.pop("username", None)
+                request.session.pop("password", None)
 
                 return redirect("home")
 
