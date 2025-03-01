@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CategoryListView, login, AdvertisementCreateView, UserProfileCreateView, AdvertisementDetailView, AdvertisementListView
+from .views import CategoryListView, login, AdvertisementCreateView, UserProfileCreateView, AdvertisementDetailView, AdvertisementListView, AdvertisementSearchView
 
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('advertisement/<int:id>', AdvertisementDetailView.as_view(), name='detail_ads'),
     path('profile/', UserProfileCreateView.as_view(), name='profile'),
     # path('single/', ProductListView.as_view(), name='single'),
+    path("search/", AdvertisementSearchView.as_view(), name="advertisement_search"),
 ]
