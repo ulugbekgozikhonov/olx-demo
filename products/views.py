@@ -44,3 +44,16 @@ class UserProfileCreateView(CreateView):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+    
+
+class AdvertisementSearchView(ListView):
+    model = Advertisement
+    template_name = "search_results.html"
+    context_object_name = "advertisements"
+    paginate_by = 1
+
+    def get_queryset(self):
+        query = self.request.GET.get("q", "").strip()
+        if query:
+            return Advertisement.objects.filter(title__icontains=query).order_by('-created_at')
+        return Advertisement.objects.none()

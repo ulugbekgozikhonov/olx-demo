@@ -44,9 +44,9 @@
         </div>
     </header>
     <main>
-        <form class="search-bar" action="" method="post">
-            <input type="text" placeholder="Nimani qidiryapsiz?">
-            <button class="search-btn">Qidiruv</button>
+        <form action="{% url 'advertisement_search' %}" class="search-bar" method="get">
+            <input type="text" name="q" placeholder="Nimani qidiryapsiz?">
+            <button type="submit" class="search-btn">Qidiruv</button>
         </form>
         <section class="categories">
             <h2>OLX xizmatidagi bo'limlar</h2>
