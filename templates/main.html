@@ -1,20 +1,66 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OLX Asosiy</title>
+    <title>Qidiruv natijalari</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="website icon" type="svg" href="./img/images 1.svg">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 8px;
+    }
+
+    .pagination a, .pagination span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .pagination a {
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .pagination a:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .pagination .current-page {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border: 1px solid #007bff;
+    }
+
+    .pagination .dots {
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: #777;
+        cursor: default;
+    }
+
+</style>
+    
     <header>
         <div class="navbar">
             <div class="logo">
@@ -26,57 +72,83 @@
                 <ul>
                     <li><a href="#">Chat</a></li>
                     <li><a href="#">OZ | Рус</a></li>
-                    <li><a href="./login.html">
-                            <i class='bx bxs-user'></i>
-                            Hisobingiz</a></li>
-                    <li><button class="btn">E'lon berish</button></li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'profile' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
+
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'advertisement' %}"><button class="btn">E'lon berish</button></a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><button class="btn">E'lon berish</button></a>
+                        {% endif %}
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <main>
+        <div class="search-container">
+            <form action="{% url 'advertisement_search' %}" class="search-bar" method="get">
+                <input type="text" name="q" placeholder="Nimani qidiryapsiz?">
+                <button type="submit" class="search-btn">Qidiruv</button>
+            </form>
+        </div>
         <div class="container">
             <div class="shop-cards">
-                <div class="hero-title">
-                    <h1>Biz 1,000 dan ortiq e'lon topdik</h1>
-                </div>
+                {% if page_obj %}
+                    {% for ad in page_obj %}
+                    <a href="{% url 'detail_ads' id=ad.id %}" class="card">
+                        {% if ad.images.all %}
+                            <img src="{{ ad.images.url }}" alt="{{ ad.title }}">
+                        {% else %}
+                            <p>Нет изображений</p>
+                        {% endif %}
+                        <div class="info">
+                            <h3>{{ ad.title }}</h3>
+                            <p><small>{{ ad.address }} - {{ ad.created_at|date:"Y-m-d" }}</small></p>
+                            <h4>{{ ad.price }} so’m</h4>
+                        </div>
+                    </a>
+                {% endfor %}
+            
 
-                <a href="{% url 'detail_ads' id=1 %}" class="card">
-                    <img src="{% static 'img/product1.png' %}" alt="Spark sotiladi 2010">
-                    <div class="info">
-                        <h3>Spark sotiladi 2010</h3>
-                        <p><small>Toshkent, Shayxontohur tumani - 2025-02-24</small></p>
-                        <p>2010 - 213 km</p>
-                        <h4>62 618 350 so’m</h4>
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">«</a>
+                        {% endif %}
+                    
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if num == page_obj.number %}
+                                <span class="current-page">{{ num }}</span>
+                            {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+                                <a href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
+                            {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                                <a href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
+                            {% elif num == page_obj.number|add:"-3" or num == page_obj.number|add:"3" %}
+                                <span class="dots">...</span>
+                            {% endif %}
+                        {% endfor %}
+                    
+                        {% if page_obj.has_next %}
+                            <a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">»</a>
+                        {% endif %}
                     </div>
-                </a>
+                    
+                {% else %}
+                    <p>Hech narsa topilmadi.</p>
+                {% endif %}
 
-                <a href="" class="card">
-                    <img src="{% static 'img/product1.png' %}" alt="Jac M3 Plus">
-                    <div class="info">
-                        <h3>Jac M3 plus Qora rangda</h3>
-                        <p><small>Eshonguzar - Bugunda 18:31</small></p>
-                        <p>2023 - 58 000 km</p>
-                        <h4>206 576 000 so’m</h4>
-                    </div>
-                </a>
-
-                <a href="" class="card">
-                    <img src="static 'img/product1.png" alt="BYD E2 405km">
-                    <div class="info">
-                        <h3>BYD E2 405km Luxe BYD ROHAT</h3>
-                        <p><small>Toshkent, Bektemir tumani - Bugunda 18:18</small></p>
-                        <p>2024 - 0 km</p>
-                        <h4>236 600 000 so’m</h4>
-                    </div>
-                </a>
             </div>
         </div>
     </main>
+
     <footer>
         <div class="footer-container">
-            <!-- Kategoriyalar -->
             <div class="footer-section">
                 <h3>Kategoriyalar</h3>
                 <ul>
@@ -88,7 +160,6 @@
                 </ul>
             </div>
 
-            <!-- Foydali havolalar -->
             <div class="footer-section">
                 <h3>Foydali havolalar</h3>
                 <ul>
@@ -99,7 +170,6 @@
                 </ul>
             </div>
 
-            <!-- Ijtimoiy tarmoqlar -->
             <div class="footer-section">
                 <h3>Biz ijtimoiy tarmoqlarda</h3>
                 <div class="social-icons">
@@ -110,11 +180,11 @@
             </div>
         </div>
 
-        <!-- Copyright qismi -->
         <div class="footer-bottom">
             <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
         </div>
     </footer>
+
 </body>
 
 </html>

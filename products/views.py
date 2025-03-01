@@ -48,7 +48,7 @@ class UserProfileCreateView(CreateView):
 
 class AdvertisementSearchView(ListView):
     model = Advertisement
-    template_name = "search_results.html"
+    template_name = "main.html"
     context_object_name = "advertisements"
     paginate_by = 1
 
