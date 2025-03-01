@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser # type: ignore
 import datetime # type: ignore
 
 class Base(models.Model):
+    id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
