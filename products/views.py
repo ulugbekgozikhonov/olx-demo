@@ -14,6 +14,7 @@ class CategoryListView(ListView):
 class AdvertisementCreateView(CreateView):
     model = Advertisement
     template_name = 'announce.html'
+    fields = ['title', 'description', 'price']
 
 
 class AdvertisementListView(ListView):
