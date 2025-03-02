@@ -55,3 +55,11 @@ class AdvertisementSearchView(ListView):
         if query:
             return Advertisement.objects.filter(title__icontains=query).order_by('-created_at')
         return Advertisement.objects.none()
+
+
+from django.shortcuts import redirect
+
+def set_language(request, lang_code):
+    if lang_code in ['uz', 'ru']:  # Faqat ikkita tilni qo‘llab-quvvatlaymiz
+        request.session['language'] = lang_code
+    return redirect(request.META.get('HTTP_REFERER', '/'))

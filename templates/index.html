@@ -1,14 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OLX</title>
-    <link rel="website icon" type="svg" href="./img/images 1.svg">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -16,101 +13,118 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="./index.html">
+                <a href="{% url 'home' %}">
                     <img src="{% static 'img/image.png' %}" alt="">
                 </a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Chat</a></li>
-                    <li><a href="#">OZ | Рус</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Chat{% else %}Чат{% endif %}</a></li>
                     <li>
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'profile' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
+                        {% if LANGUAGE_CODE == "uz" %}
+                            <a href="{% url 'set_language' 'ru' %}">Рус</a>
                         {% else %}
-                        <a href="{% url 'login' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
-
+                            <a href="{% url 'set_language' 'uz' %}">O‘zbek</a>
                         {% endif %}
                     </li>
                     <li>
                         {% if request.user.is_authenticated %}
-                        <a href="{% url 'advertisement' %}"><button class="btn">E'lon berish</button></a>
+                        <a href="{% url 'profile' %}"><i class='bx bxs-user'></i>
+                            {% if LANGUAGE_CODE == "uz" %}Hisobingiz{% else %}Ваш аккаунт{% endif %}
+                        </a>
                         {% else %}
-                        <a href="{% url 'login' %}"><button class="btn">E'lon berish</button></a>
+                        <a href="{% url 'login' %}"><i class='bx bxs-user'></i>
+                            {% if LANGUAGE_CODE == "uz" %}Hisobingiz{% else %}Ваш аккаунт{% endif %}
+                        </a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'advertisement' %}"><button class="btn">
+                            {% if LANGUAGE_CODE == "uz" %}E'lon berish{% else %}Подать объявление{% endif %}
+                        </button></a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><button class="btn">
+                            {% if LANGUAGE_CODE == "uz" %}E'lon berish{% else %}Подать объявление{% endif %}
+                        </button></a>
                         {% endif %}
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
+    
     <main>
         <form action="{% url 'advertisement_search' %}" class="search-bar" method="get">
-            <input type="text" name="q" placeholder="Nimani qidiryapsiz?">
-            <button type="submit" class="search-btn">Qidiruv</button>
+            <input type="text" name="q" placeholder="{% if LANGUAGE_CODE == "uz" %}Nimani qidiryapsiz?{% else %}Что вы ищете?{% endif %}">
+            <button type="submit" class="search-btn">
+                {% if LANGUAGE_CODE == "uz" %}Qidiruv{% else %}Поиск{% endif %}
+            </button>
         </form>
+        
         <section class="categories">
-            <h2>OLX xizmatidagi bo'limlar</h2>
+            <h2>{% if LANGUAGE_CODE == "uz" %}OLX xizmatidagi bo'limlar{% else %}Категории OLX{% endif %}</h2>
             <div class="category-list">
-                <div class="category"><img src="{% static 'img/1.png' %}" alt="Детский мир">Bolalr Dunyosi</div>
-                <div class="category"><img src="{% static 'img/2.png' %}" alt="Недвижимость">Ko'chmas mulk</div>
+                <div class="category"><img src="{% static 'img/1.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Bolalar dunyosi{% else %}Детский мир{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/2.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Ko‘chmas mulk{% else %}Недвижимость{% endif %}
+                </div>
                 <a href="{% url 'advertisements' category_id=1 %}">
-                    <div class="category"><img src="{% static 'img/3.png' %}" alt="Транспорт">Transport</div>
+                    <div class="category"><img src="{% static 'img/3.png' %}" alt="">
+                        {% if LANGUAGE_CODE == "uz" %}Transport{% else %}Транспорт{% endif %}
+                    </div>
                 </a>
-                <div class="category"><img src="{% static 'img/4.png' %}" alt="Работа">Ish</div>
-                <div class="category"><img src="{% static 'img/5.png' %}" alt="Животные">Hayvonlar</div>
-                <div class="category"><img src="{% static 'img/6.png' %}" alt="Дом и сад">Uy va Bog'</div>
-                <div class="category"><img src="{% static 'img/7.png' %}" alt="Электроника">Elekt Jihozlari</div>
-                <div class="category"><img src="{% static 'img/8.png' %}" alt="Бизнес и услуги">Xizmatlar</div>
-                <div class="category"><img src="{% static 'img/9.png' %}" alt="Мода и стиль">Moda va Stil</div>
-                <div class="category"><img src="{% static 'img/10.png' %}" alt="Электроника">Xobbi, dam olish sport
+                <div class="category"><img src="{% static 'img/4.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Ish{% else %}Работа{% endif %}
                 </div>
-                <div class="category"><img src="{% static 'img/11.png' %}" alt="Бизнес и услуги">Tekinga beraman
+                <div class="category"><img src="{% static 'img/5.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Hayvonlar{% else %}Животные{% endif %}
                 </div>
-                <div class="category"><img src="{% static 'img/12.png' %}" alt="Мода и стиль">Ayirboshlash</div>
+                <div class="category"><img src="{% static 'img/6.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Uy va Bog‘{% else %}Дом и сад{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/7.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Elekt Jihozlari{% else %}Электроника{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/8.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Xizmatlar{% else %}Бизнес и услуги{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/9.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Moda va Stil{% else %}Мода и стиль{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/10.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Xobbi, dam olish, sport{% else %}Хобби, отдых и спорт{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/11.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Tekinga beraman{% else %}Отдам даром{% endif %}
+                </div>
+                <div class="category"><img src="{% static 'img/12.png' %}" alt="">
+                    {% if LANGUAGE_CODE == "uz" %}Ayirboshlash{% else %}Обмен{% endif %}
+                </div>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="footer-container">
-            <!-- Kategoriyalar -->
             <div class="footer-section">
-                <h3>Kategoriyalar</h3>
+                <h3>{% if LANGUAGE_CODE == "uz" %}Kategoriyalar{% else %}Категории{% endif %}</h3>
                 <ul>
-                    <li><a href="#">Avtomobillar</a></li>
-                    <li><a href="#">Ko‘chmas mulk</a></li>
-                    <li><a href="#">Elektronika</a></li>
-                    <li><a href="#">Xizmatlar</a></li>
-                    <li><a href="#">Ish o‘rinlari</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Avtomobillar{% else %}Автомобили{% endif %}</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Ko‘chmas mulk{% else %}Недвижимость{% endif %}</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Elektronika{% else %}Электроника{% endif %}</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Xizmatlar{% else %}Услуги{% endif %}</a></li>
+                    <li><a href="#">{% if LANGUAGE_CODE == "uz" %}Ish o‘rinlari{% else %}Вакансии{% endif %}</a></li>
                 </ul>
-            </div>
-
-            <!-- Foydali havolalar -->
-            <div class="footer-section">
-                <h3>Foydali havolalar</h3>
-                <ul>
-                    <li><a href="#">Yordam</a></li>
-                    <li><a href="#">Maxfiylik siyosati</a></li>
-                    <li><a href="#">Foydalanish shartlari</a></li>
-                    <li><a href="#">Biz bilan bog‘lanish</a></li>
-                </ul>
-            </div>
-
-            <!-- Ijtimoiy tarmoqlar -->
-            <div class="footer-section">
-                <h3>Biz ijtimoiy tarmoqlarda</h3>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
-                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
-                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
-                </div>
             </div>
         </div>
-
-        <!-- Copyright qismi -->
         <div class="footer-bottom">
-            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+            <p>&copy; 2024 OLX.uz. 
+                {% if LANGUAGE_CODE == "uz" %}Barcha huquqlar himoyalangan.{% else %}Все права защищены.{% endif %}
+            </p>
         </div>
     </footer>
 </body>
-
 </html>

@@ -1,3 +1,4 @@
+from .views import set_language
 from django.urls import path
 
 from .views import CategoryListView, AdvertisementCreateView, UserProfileCreateView, AdvertisementDetailView, AdvertisementListView, AdvertisementSearchView
@@ -10,4 +11,5 @@ urlpatterns = [
     path('profile/', UserProfileCreateView.as_view(), name='profile'),
     # path('single/', ProductListView.as_view(), name='single'),
     path("search/", AdvertisementSearchView.as_view(), name="advertisement_search"),
+    path('set-language/<str:lang_code>/', set_language, name='set_language'),
 ]
