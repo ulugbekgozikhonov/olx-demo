@@ -29,7 +29,7 @@
         .container {
             background: white;
             width: 400px;
-            height: 100vh;
+            height: 90vh;
             padding: 80px 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -46,10 +46,9 @@
         }
 
         .tabs button {
-            width: 100%;
+            width: 50%;
             padding: 10px;
             border: none;
-            border-radius: 10px;
             background: #ddd;
             cursor: pointer;
             font-size: 16px;
@@ -74,6 +73,10 @@
             border-radius: 5px;
         }
 
+        .form-group {
+            margin-bottom: 25px;
+        }
+
         .form-group input {
             width: 100%;
             padding: 15px 20px;
@@ -82,7 +85,6 @@
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
         }
 
 
@@ -98,7 +100,7 @@
             position: absolute;
             right: 10px;
             top: 50%;
-            transform: translateY(-80%);
+            transform: translateY(-50%);
             cursor: pointer;
             font-size: 25px;
         }
@@ -143,7 +145,7 @@
             align-items: start;
             justify-content: center;
             gap: 10px;
-            margin: 10px 0 20px 0;
+            margin-top: 10px;
         }
 
         ul li {
@@ -164,53 +166,34 @@
             width: 25px;
             height: 25px;
         }
-
-
-        .textt {
-            margin-bottom: 20px;
-        }
-
-        .register-link {
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 
 <body>
 
     <div class="container">
+        <button class="google-btn">Google orqali kirish</button>
 
-        <div class="tabs">
+        <!-- <div class="tabs">
+            <button id="loginTab" class="active" onclick="showLogin()">Kirish</button>
             <button id="registerTab" onclick="showRegister()">Ro‘yxatdan o‘tish</button>
-        </div>
-        <form id="registerForm" class="hidden" method="POST" action="{% url 'users:register' %}">
+        </div> -->
+        <form id="loginForm" method="post" action="">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="text" name="login_input" placeholder="Telefon raqami yoki email" required>
+                <input type="text" name="login_input" placeholder="Telefon raqami yoki email">
             </div>
             <div class="form-group password-container">
-                <input type="password" name="password" id="registerPassword" placeholder="Parol" required
-                    autocomplete="new-password">
-                <span class="toggle-password" onclick="togglePassword('registerPassword')">👁</span>
+                <input type="password" name="password" id="loginPassword" placeholder="Parol">
+                <span class="toggle-password" onclick="togglePassword('loginPassword')">👁</span>
             </div>
             <div class="form-group">
-                <label>Parolingizda quyidagilar bo‘lishi kerak:</label>
-                <ul>
-                    <li>9 yoki undan ortiq belgi</li>
-                    <li>Bosh harf</li>
-                    <li>Kichik harf</li>
-                    <li>Kamida bir raqam</li>
-                </ul>
+                <label>
+                    <a href="{% url 'users:register' %}">Ro'yxatdan o'tish</a>
+                </label>
             </div>
-            <div class="form-group textt">
-                Men xizmatdan foydalanish qoidalarini qabul qilaman.
-            </div>
-            <p class="register-link">Hisobingiz bormi? <a href="{% url 'users:login' %}">Saytga kirish</a></p>
-
-            <button type="submit" class="submit-btn">Ro‘yxatdan o‘tish</button>
+            <button type="submit" class="submit-btn">Kirish</button>
         </form>
-
     </div>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

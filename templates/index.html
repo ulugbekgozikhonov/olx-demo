@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OLX</title>
-    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link rel="website icon" type="svg" href="{% static 'img/images 1.svg' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -16,9 +16,15 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="./index.html">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'users:home' %}">
                     <img src="{% static 'img/image.png' %}" alt="">
                 </a>
+                {% else %}
+                <a href="{% url 'products:home' %}">
+                    <img src="{% static 'img/image.png' %}" alt="">
+                </a>
+                {% endif %}
             </div>
             <nav>
                 <ul>
@@ -26,17 +32,16 @@
                     <li><a href="#">OZ | Рус</a></li>
                     <li>
                         {% if request.user.is_authenticated %}
-                        <a href="{% url 'profile' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
+                        <a href="{% url 'products:profile' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
                         {% else %}
-                        <a href="{% url 'login' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
-
+                        <a href="{% url 'users:login' %}"><i class='bx bxs-user'></i>Hisobingiz</a>
                         {% endif %}
                     </li>
                     <li>
                         {% if request.user.is_authenticated %}
-                        <a href="{% url 'advertisement' %}"><button class="btn">E'lon berish</button></a>
+                        <a href="{% url 'products:advertisement' %}"><button class="btn">E'lon berish</button></a>
                         {% else %}
-                        <a href="{% url 'login' %}"><button class="btn">E'lon berish</button></a>
+                        <a href="{% url 'users:login' %}"><button class="btn">E'lon berish</button></a>
                         {% endif %}
                     </li>
                 </ul>
@@ -44,7 +49,7 @@
         </div>
     </header>
     <main>
-        <form action="{% url 'advertisement_search' %}" class="search-bar" method="get">
+        <form action="{% url 'products:advertisement_search' %}" class="search-bar" method="get">
             <input type="text" name="q" placeholder="Nimani qidiryapsiz?">
             <button type="submit" class="search-btn">Qidiruv</button>
         </form>
@@ -53,7 +58,7 @@
             <div class="category-list">
                 <div class="category"><img src="{% static 'img/1.png' %}" alt="Детский мир">Bolalr Dunyosi</div>
                 <div class="category"><img src="{% static 'img/2.png' %}" alt="Недвижимость">Ko'chmas mulk</div>
-                <a href="{% url 'advertisements' category_id=1 %}">
+                <a href="{% url 'products:advertisements' category_id=1 %}">
                     <div class="category"><img src="{% static 'img/3.png' %}" alt="Транспорт">Transport</div>
                 </a>
                 <div class="category"><img src="{% static 'img/4.png' %}" alt="Работа">Ish</div>

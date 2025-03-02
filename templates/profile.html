@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sozlamalar | OLX</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="website icon" type="svg" href="./img/images 1.svg">
+    <link rel="website icon" type="svg" href="{% static 'img/images 1.svg' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 
 </head>
@@ -18,7 +18,7 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="./index.html">
+                <a href="{% url 'users:home' %}">
                     <img src="{% static 'img/image.png' %}" alt="">
                 </a>
             </div>
@@ -26,10 +26,10 @@
                 <ul>
                     <li><a href="./profile.html">Chat</a></li>
                     <li><a href="#">OZ | Рус</a></li>
-                    <li><a href="./login.html">
+                    <li><a href="{% url 'products:profile' %}">
                             <i class='bx bxs-user'></i>
                             Hisobingiz</a></li>
-                    <li><a href="./login.html"><button class="btn">E'lon berish</button></a></li>
+                    <li><a href="{% url 'products:advertisement' %}"><button class="btn">E'lon berish</button></a></li>
                 </ul>
             </nav>
         </div>
@@ -98,7 +98,7 @@
                 <button type="submit">Akauntni o'chirish</button>
         </div>
 
-        <a href="{% url 'logout' %}" style="color: brown; border: 0 solid black; padding: 10px 15px;">Chiqish</a>
+        <a href="{% url 'users:logout' %}" style="color: brown; border: 0 solid black; padding: 10px 15px;">Chiqish</a>
     </div>
     <footer>
         <div class="footer-container">
@@ -142,7 +142,7 @@
         </div>
     </footer>
 
-    <script src="{% static 'js/profile.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 

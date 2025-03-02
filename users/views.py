@@ -24,7 +24,7 @@ def login(request):
         password = request.POST.get("password")
 
         if not login_input or not password:
-            return render(request, "log.html", {"error": "Email yoki telefon kiritilmagan!"})  
+            return render(request, "login.html", {"error": "Email yoki telefon kiritilmagan!"})  
 
         user = None  # ✅ oldindan `None` qilib e’lon qilamiz
 
@@ -42,13 +42,13 @@ def login(request):
         if user:  
             print(f"Login muvaffaqiyatli: {user}")
             logiin(request, user)
-            return redirect("home")
+            return redirect("users:home")
         else:
             print("Login xato! User topilmadi yoki parol noto‘g‘ri!")
-            return render(request, "log.html", {"error": "Login yoki parol xato!"})
+            return render(request, "login.html", {"error": "Login yoki parol xato!"})
 
     print("Not a POST request")
-    return render(request, "log.html")
+    return render(request, "login.html")
 
 
 
@@ -84,7 +84,7 @@ def register(request):
                 request.session["username"] = username  # ✅ Username ham saqlanadi
                 request.session["password"] = password  # ✅ Parol ham saqlanadi
 
-                return redirect("verify")  # ✅ Tasdiqlash sahifasiga o‘tish
+                return redirect("users:verify")  # ✅ Tasdiqlash sahifasiga o‘tish
             
             else:  # Telefon orqali ro‘yxatdan o‘tish
                 if User.objects.filter(phone_number=login_input).exists():
@@ -103,7 +103,7 @@ def register(request):
 def logout(request):
     logoutt(request)
     messages.success(request, "Tizimdan chiqdingiz!")
-    return redirect("login")
+    return redirect("users:login")
 
 @login_required
 def home(request):
@@ -140,7 +140,7 @@ def verify_view(request):
                 request.session.pop("username", None)
                 request.session.pop("password", None)
 
-                return redirect("home")
+                return redirect("users:home")
 
             return render(request, "verify.html", {"error": "Kod noto‘g‘ri!"})
 

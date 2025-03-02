@@ -1,20 +1,132 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <title>Tasdiqlash</title>
+    <link rel="website icon" type="svg" href="{% static 'img/images 1.svg' %}">
 </head>
+
 <body>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Sahifa background */
+        body {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        /* Title */
+        h2 {
+            font-size: 24px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Error xabari */
+        p {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Input */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ff758c;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* Input hover */
+        input[type="text"]:focus {
+            border-color: #ff497b;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff497b;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        /* Button hover */
+        button:hover {
+            background: #d43d65;
+        }
+
+        /* Responsive */
+        @media (max-width: 450px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
     <!-- <h2>{{ email }} ga jo‘natilgan kodni kiriting</h2> -->
-    <h2>Jo‘natilgan kodni kiriting</h2>
+    <!-- <h2>Jo‘natilgan kodni kiriting</h2>
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+    <p style="color: red;">{{ error }}</p>
     {% endif %}
     <form method="post">
         {% csrf_token %}
         <input type="hidden" name="email" value="{{ email }}">
         <input type="text" name="code" placeholder="Tasdiqlash kodi" required>
         <button type="submit">Tasdiqlash</button>
-    </form>
+    </form> -->
+
+    <div class="container">
+        <h2>Jo‘natilgan kodni kiriting</h2>
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="text" name="code" placeholder="Tasdiqlash kodi" required>
+            <button type="submit">Tasdiqlash</button>
+        </form>
+    </div>
 </body>
+
 </html>

@@ -2,6 +2,8 @@ from django.urls import path
 
 from .views import CategoryListView, AdvertisementCreateView, UserProfileCreateView, AdvertisementDetailView, AdvertisementListView, AdvertisementSearchView
 
+app_name = 'products'
+
 urlpatterns = [
     path('', CategoryListView.as_view(), name='home'),
     path('advertisements/<int:category_id>', AdvertisementListView.as_view(), name='advertisements'),
